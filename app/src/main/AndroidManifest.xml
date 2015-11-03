@@ -1,0 +1,61 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.gpds.ukelele">
+
+    <application android:allowBackup="true"
+        android:label="@string/app_name"
+        android:icon="@mipmap/ic_launcher"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.gpds.ukelele.MainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.gpds.ukelele.ChordsActivity"
+            android:label="@string/title_activity_chords"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="assig.app2.learnukulele.ChordsActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.gpds.ukelele.WikiActivity"
+            android:label="@string/title_activity_wiki"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="assig.app2.learnukulele.WikiActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.gpds.ukelele.SongsActivity"
+            android:label="@string/title_activity_songs"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="assig.app2.learnukulele.SongsActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.gpds.ukelele.LearnSongActivity"
+            android:label="@string/title_activity_learn_song"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="assig.app2.learnukulele.LearnSongActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
