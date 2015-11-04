@@ -54,7 +54,7 @@ public class LoginActivity extends Activity {
         else{
             // Prompt username or pass error
             Toast.makeText(this.getApplicationContext(), "Bad username or password.", Toast.LENGTH_SHORT).show();
-            // TODO Remove password textbox content
+            passwordText.clearComposingText();
 
         }
     }

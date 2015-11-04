@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
+import com.gpds.ukelele.db.DBManager;
+
 public class MainActivity extends Activity {
 
 	@Override
@@ -25,6 +27,8 @@ public class MainActivity extends Activity {
 	public void openChords(View v) {
 		Intent i = new Intent("com.gpds.ukelele.ChordsActivity");
 		startActivity(i);
+		DBManager dbManager = new DBManager(this.getApplicationContext());
+		//we are going to insert here the data for this button
 	}
 	
 	public void openWikipedia(View v) {
@@ -32,11 +36,15 @@ public class MainActivity extends Activity {
 		Intent i = new Intent(Intent.ACTION_VIEW);
 		i.setData(Uri.parse(url));
 		startActivity(i);
+		DBManager dbManager = new DBManager(this.getApplicationContext());
+		//we are going to insert here the data for this button
 	}
 	
 	public void openLearn(View v) {
 		Intent i = new Intent("com.gpds.ukelele.SongsActivity");
 		startActivity(i);
+		DBManager dbManager = new DBManager(this.getApplicationContext());
+		//we are going to insert here the data for this button
 		
 	}
 	
