@@ -1,9 +1,9 @@
 package com.gpds.ukelele;
 
-import android.net.Uri;
-import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 
@@ -32,7 +32,6 @@ public class MainActivity extends Activity {
 		Intent i = new Intent(Intent.ACTION_VIEW);
 		i.setData(Uri.parse(url));
 		startActivity(i);
-		
 	}
 	
 	public void openLearn(View v) {
