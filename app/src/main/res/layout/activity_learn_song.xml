@@ -24,28 +24,27 @@
 		android:textStyle="bold" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/playPauseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/TxtFirst"
         android:onClick="openMP3"
-        android:text="@string/button_MP3" />
+        android:text="@string/button_start" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/TxtFirst"
-        android:layout_marginLeft="47dp"
-        android:layout_toRightOf="@+id/button1"
         android:onClick="openYOUTUBE"
-        android:text="@string/button_YOUTUBE" />
+        android:text="@string/button_YOUTUBE"
+        android:layout_above="@+id/imageView100"
+        android:layout_alignEnd="@+id/imageView100" />
     
     <ImageView
         android:id="@+id/imageView100"
         android:contentDescription= "@string/common_chords"
-        android:layout_below="@+id/button1"
+        android:layout_below="@+id/playPauseButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/hallelujah" />
