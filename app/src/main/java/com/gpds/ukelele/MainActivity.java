@@ -23,7 +23,7 @@ public class MainActivity extends Activity {
 	}
 
 	public void openChords(View v) {
-		Intent i = new Intent("assig.app2.learnukulele.ChordsActivity");
+		Intent i = new Intent("com.gpds.ukelele.ChordsActivity");
 		startActivity(i);
 	}
 	
@@ -36,7 +36,7 @@ public class MainActivity extends Activity {
 	}
 	
 	public void openLearn(View v) {
-		Intent i = new Intent("assig.app2.learnukulele.SongsActivity");
+		Intent i = new Intent("com.gpds.ukelele.SongsActivity");
 		startActivity(i);
 		
 	}
