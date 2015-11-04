@@ -46,7 +46,7 @@ public class SongsActivity extends Activity {
             "http://www.youtube.com/watch?v=LDCzpvvSvjY",
                      };
     
-    Intent i = new Intent("assig.app2.learnukulele.LearnSongActivity");
+    Intent i = new Intent("com.gpds.ukelele.LearnSongActivity");
     
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

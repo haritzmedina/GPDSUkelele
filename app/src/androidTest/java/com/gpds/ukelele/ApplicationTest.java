@@ -1,4 +1,4 @@
-package gpds.com.ukelele;
+package com.gpds.ukelele;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

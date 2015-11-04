@@ -33,3 +33,5 @@ proguard/
 # Idea project files
 .idea/
 
+*.iml
+
