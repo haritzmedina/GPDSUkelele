@@ -3,6 +3,7 @@ package com.gpds.ukelele;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.Toast;
 
 public class ChordsActivity extends Activity {
 
@@ -10,6 +11,8 @@ public class ChordsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chords);
+		Toast.makeText(this, "You have selected Chords", Toast.LENGTH_LONG).show();
+
 	}
 
 	@Override

@@ -17,6 +17,7 @@
     <string name="firstC"></string>
     <string name="learn_song">Selected SONG:</string>
     <string name="button_MP3">PLAY SONG</string>
+    <string name="button_stop">STOP SONG</string>
     <string name="button_YOUTUBE">YOUTUBE</string>
     
     

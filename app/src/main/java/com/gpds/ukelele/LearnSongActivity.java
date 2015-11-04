@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class LearnSongActivity extends Activity {
@@ -21,7 +22,7 @@ public class LearnSongActivity extends Activity {
 	String songYOUTUBE;
 	int indexSong;
 	int i=0;
-	
+
 	ImageView image;
 	
 	MediaPlayer playSong;
@@ -70,11 +71,19 @@ public void openMP3(View v) {
 			R.raw.somewhere_txiki); break;
     case 5:  playSong = MediaPlayer.create(this,
 			R.raw.sweet_home_txiki); break;   
-}		
-		playSong.start();
+}
+	if (i==0){
 		i=1;
-				
+		playSong.start();
 	}
+}
+
+public void stopMP3(View v) {
+	if (i==1){
+		i=0;
+		playSong.stop();
+	}
+}
 
 public void openYOUTUBE(View v) {
 	

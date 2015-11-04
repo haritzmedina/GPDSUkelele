@@ -20,12 +20,12 @@ public class SongsActivity extends Activity {
 	SongInfo mySong;
 	
     String[] songs = {
-            "HALLELUJAH",
-            "I SHOT THE SHERIFF",
-            "I AM YOURS",
-            "LET IT BE",
-            "SOMEWHERE OVER THE RAINBOW",
-            "SWEET HOME ALABAMA",
+            "HALLELUJAH (Easy)",
+            "I SHOT THE SHERIFF (Easy)",
+            "I AM YOURS (Medium)",
+            "LET IT BE (Medium)",
+            "SOMEWHERE OVER THE RAINBOW (Difficult)",
+            "SWEET HOME ALABAMA (Difficult)",
                      };
     
     String[] songsMp3 = {
