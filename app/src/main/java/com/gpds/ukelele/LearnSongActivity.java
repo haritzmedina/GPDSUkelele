@@ -24,6 +24,8 @@ public class LearnSongActivity extends Activity {
 	String songMP3;
 	String songYOUTUBE;
 	int indexSong;
+	int tiempoinicial;
+	int tiempofinal;
 	boolean songPlaying=false;
 
 	ImageView image;
@@ -34,7 +36,7 @@ public class LearnSongActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_learn_song);
-
+		tiempoinicial= ((int) System.currentTimeMillis());
 		SongInfo obj = (SongInfo) getIntent().getSerializableExtra("MySong");
 
 		indexSong= obj.getIndex();
@@ -118,7 +120,11 @@ public class LearnSongActivity extends Activity {
 	protected void onPause() {
 		super.onPause();
 		//Trace registerTrace = new Trace(((Global) this.getApplication()).getUsu(), "LearnSong", 1313, 1);
-		Toast.makeText(this.getApplicationContext(), ((Global) this.getApplication()).getUsu(), Toast.LENGTH_SHORT).show();
+		tiempofinal= (int)System.currentTimeMillis()-tiempoinicial;
+		tiempofinal=tiempofinal/1000;
+		String fin=Integer.toString(tiempofinal);
+		Toast.makeText(this.getApplicationContext(),"Se han invertido "+ fin +" segundos ",Toast.LENGTH_LONG).show();
+		//Toast.makeText(this.getApplicationContext(), ((Global) this.getApplication()).getUsu(), Toast.LENGTH_SHORT).show();
 	}
 
 }
