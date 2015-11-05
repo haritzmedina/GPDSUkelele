@@ -13,13 +13,14 @@ public class ChordsActivity extends Activity {
 
 	int tiempoinicial;
 	int tiempofinal;
-	String nombreMenu;
-	String nombreUsuario = ((Global) this.getApplication()).getUsu();
+	String nombreMenu="ChordsActivity";
+//	String nombreUsuario = ((Global) this.getApplication()).getUsu();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chords);
+		tiempoinicial= ((int) System.currentTimeMillis());
 	}
 
 
@@ -31,13 +32,14 @@ public class ChordsActivity extends Activity {
 		return true;
 	}
 
+
 	protected void onPause() {
 		super.onPause();
-		//Trace registerTrace = new Trace(((Global) this.getApplication()).getUsu(), "LearnSong", 1313, 1);
+
 		tiempofinal= (int)System.currentTimeMillis()-tiempoinicial;
 		tiempofinal=tiempofinal/1000;
 		String fin=Integer.toString(tiempofinal);
-		String nombreMenu="ChordsActivity";
+		String nombreUsuario = ((Global) this.getApplication()).getUsu();
 
 
 		// Create trace
@@ -50,9 +52,6 @@ public class ChordsActivity extends Activity {
 		dbManager.createTrace(TrackAinsertar);
 
 
-		//Toast.makeText(this.getApplicationContext(),"Se han invertido "+ fin +" segundos ",Toast.LENGTH_LONG).show();
-		//Toast.makeText(this.getApplicationContext(), ((Global) this.getApplication()).getUsu(), Toast.LENGTH_SHORT).show();
-
 	}
 
 
@@ -60,8 +59,19 @@ public class ChordsActivity extends Activity {
 		super.onDestroy();
 		tiempofinal= (int)System.currentTimeMillis()-tiempoinicial;
 		tiempofinal=tiempofinal/1000;
-		//String fin=Integer.toString(tiempofinal);
-		String nombreMenu=this.getClass().getName();
+		String fin=Integer.toString(tiempofinal);
+		String nombreUsuario = ((Global) this.getApplication()).getUsu();
+
+
+		// Create trace
+		Trace TrackAinsertar = new Trace(nombreUsuario, nombreMenu, tiempofinal);
+
+		// Create the database manager
+		DBManager dbManager = new DBManager(this.getApplicationContext());
+
+		// Introduce in DB the trace
+		dbManager.createTrace(TrackAinsertar);
+
 	}
 
 

@@ -31,7 +31,7 @@ public class DBContext extends SQLiteOpenHelper {
                 "traceID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                 "username TEXT," +
                 "menu TEXT," +
-                "menutime INTEGER,"
+                "menutime INTEGER)"
         );
     }
     //Desde menu-clicks en orden

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.Vector;
 
@@ -80,8 +81,8 @@ public class DBManager {
         ContentValues values = new ContentValues();
 
         values.put("username", trace.getUsername());
-        values.put("Menu", trace.getMenu());
-        values.put("time", trace.getMenutime());
+        values.put("menu", trace.getMenu());
+        values.put("menutime", trace.getMenutime());
 
 
         db.insert(DBContext.TRACE_TABLE, null, values);
@@ -92,36 +93,42 @@ public class DBManager {
     public Vector<Trace> retrieveTrace(Trace trazada){
         // Get a db reader
         Vector<Trace> track = new Vector<Trace>();
-        String username="";
+        String use="";
         Trace aux;
-        String menu="";
+        String men="";
         int time=0;
         SQLiteDatabase db = this.dbContext.getReadableDatabase();
+        // "username LIKE ? AND menu LIKE ?",
+        //new String[]{trazada.getUsername(),trazada.getMenu()},
         // Create and execute query
         Cursor cursor = db.query(
                 DBContext.TRACE_TABLE,
-                new String[]{"username","menu","time"},
-                "username LIKE ? menu LIKE ?",
+                new String[]{"username","menu","menutime"},
+                "username LIKE ? AND menu Like ?",
                 new String[]{trazada.getUsername(),trazada.getMenu()},
                 null,
                 null,
                 "username DESC"
-                //Se nos devuelve todo el trace que tenga un username
+                //Se nos devuelve todo el trace que tenga un username y menu
         );
         // Move to the first result the cursor if exists
         if(cursor==null || cursor.getCount()<=0){
+            //Log.w("Salida", "Nos sale del bucle");
             return null;
         }
         cursor.moveToFirst();
-
+        Log.w("Entrada1", "Cursor vacio");
         for (int i=0;cursor.getCount()<i;i++ )
         // Retrieve all traces
         {
+            Log.w("Entrada", "viene al try");
             try {
-                username = cursor.getString(cursor.getColumnIndexOrThrow("username"));
-                menu = cursor.getString(cursor.getColumnIndexOrThrow("menu"));
+                use = cursor.getString(cursor.getColumnIndexOrThrow("username"));
+
+                men = cursor.getString(cursor.getColumnIndexOrThrow("menu"));
+
                 time = cursor.getInt(cursor.getColumnIndexOrThrow("menutime"));
-                aux=new Trace(username,menu,time);
+                aux=new Trace(use,men,time);
                 track.add(aux);
             } catch (IllegalArgumentException e) {
                 cursor.close();

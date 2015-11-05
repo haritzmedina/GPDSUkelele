@@ -27,8 +27,7 @@ public class LearnSongActivity extends Activity {
 	int indexSong;
 	int tiempoinicial;
 	int tiempofinal;
-	String nombreMenu;
-	String nombreUsuario = ((Global) this.getApplication()).getUsu();
+	String nombreMenu="LearnSongActivity";
 	boolean songPlaying=false;
 
 	ImageView image;
@@ -41,7 +40,11 @@ public class LearnSongActivity extends Activity {
 		setContentView(R.layout.activity_learn_song);
 		tiempoinicial= ((int) System.currentTimeMillis());
 		SongInfo obj = (SongInfo) getIntent().getSerializableExtra("MySong");
-
+		/*
+		String nombreUsuario = ((Global) this.getApplication()).getUsu();
+		//String nombreUsuario = ((Global) this.getApplication()).getUsu();
+		Toast.makeText(this.getApplicationContext(), nombreUsuario, Toast.LENGTH_SHORT).show();
+		*/
 		indexSong= obj.getIndex();
 		songName= obj.getName();
 		songMP3= obj.getMp3();
@@ -49,6 +52,7 @@ public class LearnSongActivity extends Activity {
 
 		final EditText TxtFirst = (EditText)findViewById(R.id.TxtFirst);
 		TxtFirst.setText(songName);
+		TxtFirst.setKeyListener(null);
 
 		image = (ImageView) findViewById(R.id.imageView100);
 
@@ -126,7 +130,7 @@ public class LearnSongActivity extends Activity {
 		tiempofinal= (int)System.currentTimeMillis()-tiempoinicial;
 		tiempofinal=tiempofinal/1000;
 		String fin=Integer.toString(tiempofinal);
-		String nombreMenu="LearnSongActivity";
+		String nombreUsuario = ((Global) this.getApplication()).getUsu();
 
 
 		// Create trace
@@ -139,7 +143,7 @@ public class LearnSongActivity extends Activity {
 		dbManager.createTrace(TrackAinsertar);
 
 
-		//Toast.makeText(this.getApplicationContext(),"Se han invertido "+ fin +" segundos ",Toast.LENGTH_LONG).show();
+		Toast.makeText(this.getApplicationContext(),"Se han invertido "+ fin +" segundos ",Toast.LENGTH_LONG).show();
 		//Toast.makeText(this.getApplicationContext(), ((Global) this.getApplication()).getUsu(), Toast.LENGTH_SHORT).show();
 
 	}
@@ -149,8 +153,25 @@ public class LearnSongActivity extends Activity {
 		super.onDestroy();
 		tiempofinal= (int)System.currentTimeMillis()-tiempoinicial;
 		tiempofinal=tiempofinal/1000;
+		String fin=Integer.toString(tiempofinal);
+		String nombreUsuario = ((Global) this.getApplication()).getUsu();
+
+
+		// Create trace
+		Trace TrackAinsertar = new Trace(nombreUsuario, nombreMenu, tiempofinal);
+
+		// Create the database manager
+		DBManager dbManager = new DBManager(this.getApplicationContext());
+
+		// Introduce in DB the trace
+		dbManager.createTrace(TrackAinsertar);
+
+		/*
+		String fin=Integer.toString(tiempofinal);
 		//String fin=Integer.toString(tiempofinal);
 		String nombreMenu=this.getClass().getName();
+		Toast.makeText(this.getApplicationContext(),"Se han invertido "+ fin +" segundos ",Toast.LENGTH_LONG).show();
+		*/
 	}
 
 }

@@ -22,8 +22,8 @@ public class SongsActivity extends Activity {
     //Variables para tracking
     int tiempoinicial;
     int tiempofinal;
-    String nombreMenu;
-    String nombreUsuario = ((Global) this.getApplication()).getUsu();
+    String nombreMenu="SongsActivity";
+   // String nombreUsuario = ((Global) this.getApplication()).getUsu();
 
 	int index;
 	ListView l1;
@@ -63,8 +63,8 @@ public class SongsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_songs);
-		
-		
+
+        tiempoinicial= ((int) System.currentTimeMillis());
 		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_list_item_1, songs);
@@ -109,11 +109,11 @@ public class SongsActivity extends Activity {
 
     protected void onPause() {
         super.onPause();
-        //Trace registerTrace = new Trace(((Global) this.getApplication()).getUsu(), "LearnSong", 1313, 1);
+
         tiempofinal= (int)System.currentTimeMillis()-tiempoinicial;
         tiempofinal=tiempofinal/1000;
         String fin=Integer.toString(tiempofinal);
-        String nombreMenu="SongsActivity";
+        String nombreUsuario = ((Global) this.getApplication()).getUsu();
 
 
         // Create trace
@@ -126,9 +126,6 @@ public class SongsActivity extends Activity {
         dbManager.createTrace(TrackAinsertar);
 
 
-        //Toast.makeText(this.getApplicationContext(),"Se han invertido "+ fin +" segundos ",Toast.LENGTH_LONG).show();
-        //Toast.makeText(this.getApplicationContext(), ((Global) this.getApplication()).getUsu(), Toast.LENGTH_SHORT).show();
-
     }
 
 
@@ -136,8 +133,19 @@ public class SongsActivity extends Activity {
         super.onDestroy();
         tiempofinal= (int)System.currentTimeMillis()-tiempoinicial;
         tiempofinal=tiempofinal/1000;
-        //String fin=Integer.toString(tiempofinal);
-        String nombreMenu=this.getClass().getName();
+        String fin=Integer.toString(tiempofinal);
+        String nombreUsuario = ((Global) this.getApplication()).getUsu();
+
+
+        // Create trace
+        Trace TrackAinsertar = new Trace(nombreUsuario, nombreMenu, tiempofinal);
+
+        // Create the database manager
+        DBManager dbManager = new DBManager(this.getApplicationContext());
+
+        // Introduce in DB the trace
+        dbManager.createTrace(TrackAinsertar);
+
     }
 
 }

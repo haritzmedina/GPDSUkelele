@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Toast;
 
 import com.gpds.ukelele.db.DBManager;
 
@@ -15,12 +16,17 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		/*
+		String nombreUsuario = ((Global) this.getApplication()).getUsu();
+		Toast.makeText(this.getApplicationContext(), nombreUsuario, Toast.LENGTH_SHORT).show();
+		*/
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
+
 		return true;
 	}
 

@@ -2,7 +2,9 @@ package com.gpds.ukelele;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gpds.ukelele.db.DBManager;
 import com.gpds.ukelele.db.Trace;
@@ -18,6 +20,8 @@ public class ResumeActivity extends ActionBarActivity {
         insertData();
     }
 
+
+
     public void insertData() {
 
         //Insertar la información de la que disponemos en la actividad resumte
@@ -31,7 +35,7 @@ public class ResumeActivity extends ActionBarActivity {
 
         //Coger los datos que iremos a introducir
         String username = ((Global) this.getApplication()).getUsu();
-
+        Toast.makeText(this.getApplicationContext(), username, Toast.LENGTH_SHORT).show();
 
 
         Vector<String> menus = new Vector<String>();
@@ -47,13 +51,23 @@ public class ResumeActivity extends ActionBarActivity {
 
 
         for(int i=0;i<menus.size();i++) {
+
+
+
             int tiempoTotalmenu = 0;
             //Recogemos por cada menu, sus datos
             Trace traz = new Trace(username, menus.elementAt(i), 0);
+           // Log.w("Bucle 3 user","el user del bucle 3 es "+username);
+
             Vector<Trace> vectorMenu = dbManager.retrieveTrace(traz);
 
             //Aquí realizamos la suma de todos los tiempos en el menú
             for (int x = 0; x < vectorMenu.size(); x++) {
+
+
+
+
+
                 tiempoTotalmenu = tiempoTotalmenu + vectorMenu.elementAt(x).getMenutime();
 
             if (menus.elementAt(i).equals("menuChords")) {
