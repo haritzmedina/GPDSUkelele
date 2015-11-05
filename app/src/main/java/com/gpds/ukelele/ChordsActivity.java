@@ -5,14 +5,18 @@ import android.app.Activity;
 import android.view.Menu;
 import android.widget.Toast;
 
-import com.gpds.ukelele.db.Trace;
-
 public class ChordsActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_chords);
+	}
+
+	protected void onPause() {
+		super.onPause();
+		//Trace registerTrace = new Trace(((Global) this.getApplication()).getUsu(), "Songs", 1313, 1);
+		Toast.makeText(this.getApplicationContext(), ((Global) this.getApplication()).getUsu(), Toast.LENGTH_SHORT).show();
 	}
 
 	@Override
@@ -22,11 +26,4 @@ public class ChordsActivity extends Activity {
 		return true;
 	}
 
-	@Override
-	protected void onPause() {
-		super.onPause();
-		//Trace registerTrace = new Trace(((Global) this.getApplication()).getUsu(), "Chords", 1313, 1);
-		Toast.makeText(this.getApplicationContext(), ((Global) this.getApplication()).getUsu(), Toast.LENGTH_SHORT).show();
-
-	}
 }
