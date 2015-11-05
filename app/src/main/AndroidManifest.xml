@@ -72,6 +72,11 @@
         <activity
             android:name=".ResumeActivity"
             android:label="@string/title_activity_resume" >
+            <intent-filter>
+                <action android:name="com.gpds.ukelele.ResumeActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 

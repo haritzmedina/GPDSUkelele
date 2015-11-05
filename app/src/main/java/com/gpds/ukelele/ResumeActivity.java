@@ -10,9 +10,10 @@ public class ResumeActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resume);
+        insertData();
     }
 
-    public void insertDates() {
+    public void insertData() {
         TextView usernameText = (TextView) findViewById(R.id.userField);
         usernameText.setText(((Global) this.getApplication()).getUsu());
     }
