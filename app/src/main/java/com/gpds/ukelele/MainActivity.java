@@ -37,7 +37,6 @@ public class MainActivity extends Activity {
 		i.setData(Uri.parse(url));
 		startActivity(i);
 		DBManager dbManager = new DBManager(this.getApplicationContext());
-		//we are going to insert here the data for this button
 	}
 	
 	public void openLearn(View v) {
@@ -45,8 +44,10 @@ public class MainActivity extends Activity {
 		startActivity(i);
 		DBManager dbManager = new DBManager(this.getApplicationContext());
 		//we are going to insert here the data for this button
-		
 	}
-	
-	
+
+	public void openResume(View v) {
+		Intent i = new Intent("com.gpds.ukelele.ResumeActivity");
+		startActivity(i);
+	}
 }
