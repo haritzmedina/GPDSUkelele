@@ -13,6 +13,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.gpds.ukelele.db.Trace;
 
 
 public class LearnSongActivity extends Activity {
@@ -110,6 +113,12 @@ public class LearnSongActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.learn_song, menu);
 		return true;
+	}
+
+	protected void onPause() {
+		super.onPause();
+		//Trace registerTrace = new Trace(((Global) this.getApplication()).getUsu(), "LearnSong", 1313, 1);
+		Toast.makeText(this.getApplicationContext(), ((Global) this.getApplication()).getUsu(), Toast.LENGTH_SHORT).show();
 	}
 
 }

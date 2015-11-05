@@ -80,7 +80,7 @@ public class DBManager {
         values.put("username", trace.getUsername());
         values.put("Menu", trace.getMenu());
         values.put("Clicks", trace.getMenuclicks());
-        values.put("password", trace.getMenutime());
+        values.put("time", trace.getMenutime());
 
 
         db.insert(DBContext.TRACE_TABLE, null, values);

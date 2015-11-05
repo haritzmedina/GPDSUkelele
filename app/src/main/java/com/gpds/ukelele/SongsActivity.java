@@ -12,6 +12,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.gpds.ukelele.db.Trace;
+
 public class SongsActivity extends Activity {
 
 	int index;
@@ -87,6 +89,12 @@ public class SongsActivity extends Activity {
 	
         
 	}
+
+    protected void onPause() {
+        super.onPause();
+        //Trace registerTrace = new Trace(((Global) this.getApplication()).getUsu(), "Songs", 1313, 1);
+        Toast.makeText(this.getApplicationContext(), ((Global) this.getApplication()).getUsu(), Toast.LENGTH_SHORT).show();
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

@@ -45,8 +45,7 @@ public class LoginActivity extends Activity {
 
         // If username and password match, login correct
         if(loginUser.equals(dbUser)){
-            // TODO Save current logged username
-
+            ((Global) this.getApplication()).setUsu(loginUser.getUsername());
             // Open main activity
             Intent i = new Intent("com.gpds.ukelele.MainActivity");
             startActivity(i);

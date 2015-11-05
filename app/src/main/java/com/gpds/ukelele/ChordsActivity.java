@@ -3,6 +3,9 @@ package com.gpds.ukelele;
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import android.widget.Toast;
+
+import com.gpds.ukelele.db.Trace;
 
 public class ChordsActivity extends Activity {
 
@@ -19,4 +22,11 @@ public class ChordsActivity extends Activity {
 		return true;
 	}
 
+	@Override
+	protected void onPause() {
+		super.onPause();
+		//Trace registerTrace = new Trace(((Global) this.getApplication()).getUsu(), "Chords", 1313, 1);
+		Toast.makeText(this.getApplicationContext(), ((Global) this.getApplication()).getUsu(), Toast.LENGTH_SHORT).show();
+
+	}
 }
