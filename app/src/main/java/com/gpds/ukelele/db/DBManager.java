@@ -79,7 +79,6 @@ public class DBManager {
 
         values.put("username", trace.getUsername());
         values.put("Menu", trace.getMenu());
-        values.put("Clicks", trace.getMenuclicks());
         values.put("time", trace.getMenutime());
 
 
@@ -125,7 +124,7 @@ public class DBManager {
         cursor.close();
         db.close();
         // Return the user
-        return new Trace(username, menu,time,clicks);
+        return new Trace(username, menu,time);
     }
 
 
