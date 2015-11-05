@@ -71,4 +71,68 @@ public class DBManager {
         return new User(username, password);
     }
 
-}
+    //Funciones para ver la información de tracking del usuario
+
+    public void createTrace(Trace trace){
+        SQLiteDatabase db = dbContext.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("username", trace.getUsername());
+        values.put("Menu", trace.getMenu());
+        values.put("Clicks", trace.getMenuclicks());
+        values.put("password", trace.getMenutime());
+
+
+        db.insert(DBContext.TRACE_TABLE, null, values);
+        db.close();
+    }
+
+
+    public Trace retrieveTrace(Trace trazada){
+        // Get a db reader
+        SQLiteDatabase db = this.dbContext.getReadableDatabase();
+        // Create and execute query
+        Cursor cursor = db.query(
+                DBContext.TRACE_TABLE,
+                new String[]{"username","menu","clicks","time"},
+                "username LIKE ?",
+                new String[]{trazada.getUsername()},
+                null,
+                null,
+                "username DESC"
+                //Se nos devuelve todo el trace que tenga un username
+        );
+        // Move to the first result the cursor if exists
+        if(cursor==null || cursor.getCount()<=0){
+            return null;
+        }
+        cursor.moveToFirst();
+        // Retrieve username and password
+        String username;
+        String menu;
+        int clicks;
+        int time;
+        try{
+            username = cursor.getString(cursor.getColumnIndexOrThrow("username"));
+            menu = cursor.getString(cursor.getColumnIndexOrThrow("menu"));
+            time = cursor.getInt(cursor.getColumnIndexOrThrow("menutime"));
+            clicks = cursor.getInt(cursor.getColumnIndexOrThrow("menuclicks"));
+        } catch(IllegalArgumentException e){
+            cursor.close();
+            db.close();
+            return null;
+        }
+        cursor.close();
+        db.close();
+        // Return the user
+        return new Trace(username, menu,time,clicks);
+    }
+
+
+    }
+
+
+
+
+
+

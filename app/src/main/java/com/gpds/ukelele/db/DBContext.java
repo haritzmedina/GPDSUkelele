@@ -26,15 +26,20 @@ public class DBContext extends SQLiteOpenHelper {
                 "username TEXT PRIMARY KEY," +
                 "password TEXT)"
         );
-        // Create user trace table
+        // Acciones del usuario por menu
         db.execSQL("CREATE TABLE "+TRACE_TABLE+" (" +
                 "traceID INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
                 "username TEXT," +
                 "menu TEXT," +
-                "time INTEGER)"
+                "menutime INTEGER," +
+                "menuclicks INTEGER)"
         );
     }
-
+    //Desde menu-clicks en orden
+    //Tendra el formato "nombredeMenu"+"numero de clicks"
+    //Tendra el formato "nombredeMenu"+"tiempo en ese menu"
+    //Tiempo que el usuario ha estado logeado en total
+    //Tiempo que el usuario ha invertido en la última sesión
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DELETE TABLE IF EXISTS "+USERS_TABLE);
