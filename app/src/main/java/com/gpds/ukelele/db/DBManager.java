@@ -93,7 +93,7 @@ public class DBManager {
         // Create and execute query
         Cursor cursor = db.query(
                 DBContext.TRACE_TABLE,
-                new String[]{"username","menu","clicks","time"},
+                new String[]{"username","menu","time"},
                 "username LIKE ?",
                 new String[]{trazada.getUsername()},
                 null,
@@ -109,13 +109,11 @@ public class DBManager {
         // Retrieve username and password
         String username;
         String menu;
-        int clicks;
         int time;
         try{
             username = cursor.getString(cursor.getColumnIndexOrThrow("username"));
             menu = cursor.getString(cursor.getColumnIndexOrThrow("menu"));
             time = cursor.getInt(cursor.getColumnIndexOrThrow("menutime"));
-            clicks = cursor.getInt(cursor.getColumnIndexOrThrow("menuclicks"));
         } catch(IllegalArgumentException e){
             cursor.close();
             db.close();
