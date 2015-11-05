@@ -12,9 +12,18 @@ import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.gpds.ukelele.db.DBManager;
 import com.gpds.ukelele.db.Trace;
 
 public class SongsActivity extends Activity {
+
+
+
+    //Variables para tracking
+    int tiempoinicial;
+    int tiempofinal;
+    String nombreMenu;
+    String nombreUsuario = ((Global) this.getApplication()).getUsu();
 
 	int index;
 	ListView l1;
@@ -90,17 +99,45 @@ public class SongsActivity extends Activity {
         
 	}
 
-    protected void onPause() {
-        super.onPause();
-        //Trace registerTrace = new Trace(((Global) this.getApplication()).getUsu(), "Songs", 1313, 1);
-        Toast.makeText(this.getApplicationContext(), ((Global) this.getApplication()).getUsu(), Toast.LENGTH_SHORT).show();
-    }
-
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.songs, menu);
 		return true;
 	}
+
+
+    protected void onPause() {
+        super.onPause();
+        //Trace registerTrace = new Trace(((Global) this.getApplication()).getUsu(), "LearnSong", 1313, 1);
+        tiempofinal= (int)System.currentTimeMillis()-tiempoinicial;
+        tiempofinal=tiempofinal/1000;
+        String fin=Integer.toString(tiempofinal);
+        String nombreMenu="SongsActivity";
+
+
+        // Create trace
+        Trace TrackAinsertar = new Trace(nombreUsuario, nombreMenu, tiempofinal);
+
+        // Create the database manager
+        DBManager dbManager = new DBManager(this.getApplicationContext());
+
+        // Introduce in DB the trace
+        dbManager.createTrace(TrackAinsertar);
+
+
+        //Toast.makeText(this.getApplicationContext(),"Se han invertido "+ fin +" segundos ",Toast.LENGTH_LONG).show();
+        //Toast.makeText(this.getApplicationContext(), ((Global) this.getApplication()).getUsu(), Toast.LENGTH_SHORT).show();
+
+    }
+
+
+    protected void onDestroy() {
+        super.onDestroy();
+        tiempofinal= (int)System.currentTimeMillis()-tiempoinicial;
+        tiempofinal=tiempofinal/1000;
+        //String fin=Integer.toString(tiempofinal);
+        String nombreMenu=this.getClass().getName();
+    }
 
 }

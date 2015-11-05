@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.Vector;
+
 /**
  * Created by Haritz on 04/11/2015.
  */
@@ -87,15 +89,20 @@ public class DBManager {
     }
 
 
-    public Trace retrieveTrace(Trace trazada){
+    public Vector<Trace> retrieveTrace(Trace trazada){
         // Get a db reader
+        Vector<Trace> track = new Vector<Trace>();
+        String username="";
+        Trace aux;
+        String menu="";
+        int time=0;
         SQLiteDatabase db = this.dbContext.getReadableDatabase();
         // Create and execute query
         Cursor cursor = db.query(
                 DBContext.TRACE_TABLE,
                 new String[]{"username","menu","time"},
-                "username LIKE ?",
-                new String[]{trazada.getUsername()},
+                "username LIKE ? menu LIKE ?",
+                new String[]{trazada.getUsername(),trazada.getMenu()},
                 null,
                 null,
                 "username DESC"
@@ -106,23 +113,27 @@ public class DBManager {
             return null;
         }
         cursor.moveToFirst();
-        // Retrieve username and password
-        String username;
-        String menu;
-        int time;
-        try{
-            username = cursor.getString(cursor.getColumnIndexOrThrow("username"));
-            menu = cursor.getString(cursor.getColumnIndexOrThrow("menu"));
-            time = cursor.getInt(cursor.getColumnIndexOrThrow("menutime"));
-        } catch(IllegalArgumentException e){
-            cursor.close();
-            db.close();
-            return null;
+
+        for (int i=0;cursor.getCount()<i;i++ )
+        // Retrieve all traces
+        {
+            try {
+                username = cursor.getString(cursor.getColumnIndexOrThrow("username"));
+                menu = cursor.getString(cursor.getColumnIndexOrThrow("menu"));
+                time = cursor.getInt(cursor.getColumnIndexOrThrow("menutime"));
+                aux=new Trace(username,menu,time);
+                track.add(aux);
+            } catch (IllegalArgumentException e) {
+                cursor.close();
+                db.close();
+                return null;
+            }
+            cursor.moveToNext();
         }
         cursor.close();
         db.close();
         // Return the user
-        return new Trace(username, menu,time);
+        return track;
     }
 
 
