@@ -89,62 +89,62 @@ public class DBManager {
         db.close();
     }
 
+   public Vector<Trace> retrieveTrace(Trace trazada){
+    // Get a db reader
+    Vector<Trace> track = new Vector<Trace>();
+    String use="";
+    Trace aux;
+    String men="";
+    int time=0;
+    SQLiteDatabase db = this.dbContext.getReadableDatabase();
+    // "username LIKE ? AND menu LIKE ?",
+    //new String[]{trazada.getUsername(),trazada.getMenu()},
+    // Create and execute query
+    Cursor cursor = db.query(
+            DBContext.TRACE_TABLE,
+            new String[]{"traceID","username","menu","menutime"},
+            //"username" + "=?" + " and "  + "menu" + "=?",
+            "username LIKE ? and menu LIKE ?",
+            new String[]{trazada.getUsername(),trazada.getMenu()},
+            null,
+            null,
+            "username DESC"
+            //Se nos devuelve todo el trace que tenga un username y menu
+    );
 
-    public Vector<Trace> retrieveTrace(Trace trazada){
-        // Get a db reader
-        Vector<Trace> track = new Vector<Trace>();
-        String use="";
-        Trace aux;
-        String men="";
-        int time=0;
-        SQLiteDatabase db = this.dbContext.getReadableDatabase();
-        // "username LIKE ? AND menu LIKE ?",
-        //new String[]{trazada.getUsername(),trazada.getMenu()},
-        // Create and execute query
-        Cursor cursor = db.query(
-                DBContext.TRACE_TABLE,
-                new String[]{"username","menu","menutime"},
-                "username LIKE ? AND menu Like ?",
-                new String[]{trazada.getUsername(),trazada.getMenu()},
-                null,
-                null,
-                "username DESC"
-                //Se nos devuelve todo el trace que tenga un username y menu
-        );
-        // Move to the first result the cursor if exists
-        if(cursor==null || cursor.getCount()<=0){
-            //Log.w("Salida", "Nos sale del bucle");
+    // Move to the first result the cursor if exists
+    if(cursor==null || cursor.getCount()<=0){
+        Log.w("Salida", "No hay información");
+        return null;
+        //Si no encuentra nada
+    }
+       cursor.moveToFirst();
+
+    for (int i=0;cursor.getCount()<i;i++ )
+    // Retrieve all traces
+    {
+        try {
+            use = cursor.getString(cursor.getColumnIndexOrThrow("username"));
+
+            men = cursor.getString(cursor.getColumnIndexOrThrow("menu"));
+
+            time = cursor.getInt(cursor.getColumnIndexOrThrow("menutime"));
+
+            aux=new Trace(use,men,time);
+            track.add(aux);
+        } catch (IllegalArgumentException e) {
+            cursor.close();
+            db.close();
             return null;
         }
-        cursor.moveToFirst();
-        Log.w("Entrada1", "Cursor vacio");
-        for (int i=0;cursor.getCount()<i;i++ )
-        // Retrieve all traces
-        {
-            Log.w("Entrada", "viene al try");
-            try {
-                use = cursor.getString(cursor.getColumnIndexOrThrow("username"));
-
-                men = cursor.getString(cursor.getColumnIndexOrThrow("menu"));
-
-                time = cursor.getInt(cursor.getColumnIndexOrThrow("menutime"));
-                aux=new Trace(use,men,time);
-                track.add(aux);
-            } catch (IllegalArgumentException e) {
-                cursor.close();
-                db.close();
-                return null;
-            }
-            cursor.moveToNext();
-        }
-        cursor.close();
-        db.close();
-        // Return the user
-        return track;
+        cursor.moveToNext();
     }
+    cursor.close();
+    db.close();
+    // Return the user
+    return track;
 
-
-    }
+    }}
 
 
 

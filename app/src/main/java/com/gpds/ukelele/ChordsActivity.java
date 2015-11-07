@@ -41,7 +41,7 @@ public class ChordsActivity extends Activity {
 		String fin=Integer.toString(tiempofinal);
 		String nombreUsuario = ((Global) this.getApplication()).getUsu();
 
-
+		Toast.makeText(this.getApplicationContext(),"Se han invertido "+ fin +" segundos ",Toast.LENGTH_LONG).show();
 		// Create trace
 		Trace TrackAinsertar = new Trace(nombreUsuario, nombreMenu, tiempofinal);
 
@@ -62,7 +62,7 @@ public class ChordsActivity extends Activity {
 		String fin=Integer.toString(tiempofinal);
 		String nombreUsuario = ((Global) this.getApplication()).getUsu();
 
-
+		Toast.makeText(this.getApplicationContext(),"Se han invertido "+ fin +" segundos ",Toast.LENGTH_LONG).show();
 		// Create trace
 		Trace TrackAinsertar = new Trace(nombreUsuario, nombreMenu, tiempofinal);
 

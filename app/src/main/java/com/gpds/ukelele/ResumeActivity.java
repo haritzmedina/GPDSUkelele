@@ -50,46 +50,46 @@ public class ResumeActivity extends ActionBarActivity {
         String tiempoString;
 
 
-        for(int i=0;i<menus.size();i++) {
-
+        for (int i = 0; i < menus.size(); i++) {
 
 
             int tiempoTotalmenu = 0;
             //Recogemos por cada menu, sus datos
             Trace traz = new Trace(username, menus.elementAt(i), 0);
-           // Log.w("Bucle 3 user","el user del bucle 3 es "+username);
+            // Log.w("Bucle 3 user","el user del bucle 3 es "+username);
 
             Vector<Trace> vectorMenu = dbManager.retrieveTrace(traz);
 
+            if(vectorMenu==null)//Si no se ha encontrado nada, algo hay ido mal.
+                break;
+
             //Aquí realizamos la suma de todos los tiempos en el menú
+
             for (int x = 0; x < vectorMenu.size(); x++) {
-
-
-
 
 
                 tiempoTotalmenu = tiempoTotalmenu + vectorMenu.elementAt(x).getMenutime();
 
-            if (menus.elementAt(i).equals("menuChords")) {
-                //Escribimos en la etiqueta correspondiente
-                tiempoString = Integer.toString(tiempoTotalmenu);
-                chordsActivityText.setText(tiempoString);
-            }
-            if (menus.elementAt(i).equals("SongsActivity")) {
-                //Escribimos en la etiqueta correspondiente
-                tiempoString = Integer.toString(tiempoTotalmenu);
-                songsActivityText.setText(tiempoString);
-            }
-            if (menus.elementAt(i).equals("LearnSongActivity")) {
-                //Escribimos en la etiqueta correspondiente
-                tiempoString = Integer.toString(tiempoTotalmenu);
-                learnSongsActivityText.setText(tiempoString);
+                if (menus.elementAt(i).equals("menuChords")) {
+                    //Escribimos en la etiqueta correspondiente
+                    tiempoString = Integer.toString(tiempoTotalmenu);
+                    chordsActivityText.setText(tiempoString);
+                }
+                if (menus.elementAt(i).equals("SongsActivity")) {
+                    //Escribimos en la etiqueta correspondiente
+                    tiempoString = Integer.toString(tiempoTotalmenu);
+                    songsActivityText.setText(tiempoString);
+                }
+                if (menus.elementAt(i).equals("LearnSongActivity")) {
+                    //Escribimos en la etiqueta correspondiente
+                    tiempoString = Integer.toString(tiempoTotalmenu);
+                    learnSongsActivityText.setText(tiempoString);
                 }
             }
         }
-
+    }
     }
 
 
-    }
+
 

@@ -119,6 +119,7 @@ public class SongsActivity extends Activity {
         // Create trace
         Trace TrackAinsertar = new Trace(nombreUsuario, nombreMenu, tiempofinal);
 
+        Toast.makeText(this.getApplicationContext(),"Se han invertido "+ fin +" segundos ",Toast.LENGTH_LONG).show();
         // Create the database manager
         DBManager dbManager = new DBManager(this.getApplicationContext());
 
@@ -136,7 +137,7 @@ public class SongsActivity extends Activity {
         String fin=Integer.toString(tiempofinal);
         String nombreUsuario = ((Global) this.getApplication()).getUsu();
 
-
+        Toast.makeText(this.getApplicationContext(),"Se han invertido "+ fin +" segundos ",Toast.LENGTH_LONG).show();
         // Create trace
         Trace TrackAinsertar = new Trace(nombreUsuario, nombreMenu, tiempofinal);
 

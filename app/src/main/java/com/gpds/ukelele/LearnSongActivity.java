@@ -166,12 +166,8 @@ public class LearnSongActivity extends Activity {
 		// Introduce in DB the trace
 		dbManager.createTrace(TrackAinsertar);
 
-		/*
-		String fin=Integer.toString(tiempofinal);
-		//String fin=Integer.toString(tiempofinal);
-		String nombreMenu=this.getClass().getName();
 		Toast.makeText(this.getApplicationContext(),"Se han invertido "+ fin +" segundos ",Toast.LENGTH_LONG).show();
-		*/
+
 	}
 
 }
